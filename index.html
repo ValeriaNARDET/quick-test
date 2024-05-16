@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS and JS Skills Test</title>
+    <style>
+      :root {
+        --primary-bg: #cee1e3;
+        --primary-bg-opacity: #cee1e399;
+        --secondary-bg: #ffffff;
+        --active: #bddee2;
+        --active-border: #253a36;
+        --primary-text: #2e4742;
+        --heading: #212529;
+        --border: #00000033;
+        --hover-border: #00000011;
+      }
+
+      /* --primary-bg: #161533; */
+
+      body {
+        padding: 0;
+        margin: 0;
+    }
+    * {
+        font-family: "Open Sans", sans-serif;
+    }
+    #layout {
+        height: 100vh;
+        color: var(--primary-text);
+        background: var(--secondary-bg);
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s;
+      }
+      .menu {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        padding: 5px 0;
+        background-color: var(--primary-bg);
+        font-size: 0;
+      }
+      .menu .menu-item {
+        position: relative;
+        height: 100%;
+        padding: 2px 16px;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        display: inline-block;
+        z-index: 1;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 50px;
+        text-decoration: none;
+        text-align: center;
+        color: var(--primary-text);
+        cursor: pointer;
+      }
+      .menu .menu-item::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: var(--primary-text);
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+      }
+      .menu .dropdown {
+        position: relative;
+      }
+      .menu .dropdown > .menu-item::after {
+        display: inline-block;
+        margin-left: 0.3em;
+        vertical-align: 0.15em;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+      }
+      .menu .menu-item:hover::before,
+      .menu .menu-item:focus::before {
+        width: 100%;
+      }
+      .menu .menu-item:active,
+      .menu .menu-item:focus {
+        background-color: var(--hover-border);
+      }
+      .sub-menu {
+        display: none;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 170px;
+        padding: 5px 0 8px;
+        font-size: 16px;
+        color: var(--heading);
+        text-align: left;
+        list-style: none;
+        background-color: var(--secondary-bg);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s;
+      }
+      .menu .dropdown:hover .sub-menu {
+        display: block;
+        opacity: 1;
+      }
+      .sub-menu-item {
+        display: block;
+        height: 100%;
+        padding: 2px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 40px;
+        text-decoration: none;
+        text-align: left;
+        color: var(--primary-text);
+        cursor: pointer;
+      }
+      .sub-menu-item:hover {
+        background-color: var(--hover-border);
+      }
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 150px 20px 40px;
+      }
+      .button {
+        padding: 7px 16px;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 50px;
+        text-decoration: none;
+        text-align: center;
+        color: var(--primary-text);
+        background-color: var(--primary-bg);
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+      .button:hover {
+        background-color: var(--primary-bg-opacity);
+        border-color: var(--primary-text);
+      }
+      .button:active {
+        background-color: var(--active);
+        border-color: var(--active-border);
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 70px;
+      }
+      .container > div {
+        margin: 10px 0;
+      }
+      .input {
+        min-width: 300px;
+        padding: 16px 20px;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        font-size: 14px;
+        color: var(--primary-text);
+        background-color: var(--hover-border);
+      }
+      .list {
+        min-width: 300px;
+      }
+      .dark {
+        --primary-bg: #0d0d1e;
+        --primary-bg-opacity: #0d0d1e99;
+        --secondary-bg: #161533;
+        --active: #cee1e311;
+        --active-border: #cee1e399;
+        --primary-text: #cee1e3;
+        --heading: #bddee2;
+        --border: #cee1e311;
+        --hover-border: #cee1e311;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="layout">
+      <nav>
+        <ul class="menu">
+          <li><a href="#" class="menu-item">Home</a></li>
+          <li><a href="#" class="menu-item">Blog</a></li>
+          <li class="dropdown">
+            <a href="#" class="menu-item">Services</a>
+            <ul class="sub-menu">
+              <li>
+                <a href="#" class="sub-menu-item">Graphic Design</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">Website Design</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">Python Programming</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">PHP Programming</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="menu-item">Tutorials</a>
+            <ul class="sub-menu">
+              <li>
+                <a href="#" class="sub-menu-item">JavaScript</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">TypeScript</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">Node.js</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">React.js</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">Vue.js</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">Svetle.js</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">HTML</a>
+              </li>
+              <li>
+                <a href="#" class="sub-menu-item">CSS</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#" class="menu-item">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="wrapper">
+        <button class="button" onclick="toggleMode()">Toggle Mode</button>
+      </div>
+
+      <div class="container">
+        <div>
+          <label>
+            Please, enter your list item: <br>
+            <input class="input" type="text" value="" id="inputJs" />
+          </label>
+        </div>
+
+        <div>
+          <button class="button" onclick="addItem()">Add New Item</button>
+        </div>
+
+        <div class="list">
+          <ul id="listJs" class="list"></ul>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function toggleMode() {
+      document.getElementById("layout").classList.toggle("dark");
+    }
+
+    function addItem() {
+      const input = document.getElementById("inputJs");
+
+      if (input.value) {
+        const li = document.createElement("li");
+        li.textContent = input.value;
+        const list = document.getElementById("listJs");
+        list.appendChild(li);
+        input.value = "";
+      }
+    }
+  </script>
+</html>
